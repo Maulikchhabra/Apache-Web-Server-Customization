@@ -46,11 +46,18 @@ int main()
   }
  
   listen(sock, 5);
+ 
   while (1) {
-    client_fd = accept(sock, (struct sockaddr*) &cli_addr, &sin_len);
-  }
-
-
+    client_fd = accept(sock, (struct sockaddr *) &cli_addr, &sin_len); //accept the request
     printf("got connection\n");
-   return 0;
+ 
+    if (client_fd == -1) { 
+      perror("Can't accept"); //error on accepting the request
+      continue;
+    }
+ 
+    write(client_fd, response, sizeof(response) - 1); //write the given thing {or message} on the server so if client access it he can see the msg
+    close(client_fd); //close the connection
+  }
+  return 0;
 }
