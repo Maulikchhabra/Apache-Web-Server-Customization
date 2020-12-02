@@ -52,3 +52,12 @@ int main()
 	argument for the socket associated with the file descriptor specified by the socket argument .*/
 	
 	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(int));
+	
+	/* Setting up the necessary configuration
+	port -> the port on which the server will work is initialized.*/
+	
+	int port = 9091;
+	
+	svr_addr.sin_family = AF_INET; // to use IP address or we can say you will be having all values in IP address
+	svr_addr.sin_addr.s_addr = INADDR_ANY; // you get your address by your own (this pc address only)
+	svr_addr.sin_port = htons(port); //htons() method convert port number from int to network format
