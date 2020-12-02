@@ -33,5 +33,11 @@ int main()
     err(1, "can't open socket");
  
   setsockopt(sock,SOL_SOCKET, SO_REUSEADDR, &one, sizeof(int));
+ 
+  int port = 9090;
+ 
+  svr_addr.sin_family = AF_INET; //to use IP address or we can say you will be having all values in IP address  
+  svr_addr.sin_addr.s_addr = INADDR_ANY; //you get your address by your own (this pc address only)
+  svr_addr.sin_port = htons(port); //htons() method convert port number from int to network format
   return 0;
 }
