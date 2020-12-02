@@ -61,3 +61,18 @@ int main()
 	svr_addr.sin_family = AF_INET; // to use IP address or we can say you will be having all values in IP address
 	svr_addr.sin_addr.s_addr = INADDR_ANY; // you get your address by your own (this pc address only)
 	svr_addr.sin_port = htons(port); //htons() method convert port number from int to network format
+	
+	/* Binding the server address to the socket
+	The bind() function shall assign a local socket address address to a socket identified by
+	descriptor socket that has no local socket address assigned. Sockets created with the socket()
+	function are initially unnamed; they are identified only by their address family.
+	The bind() function takes the following arguments:
+	socket: Specifies the file descriptor of the socket to be bound.
+	address: Points to a sockaddr structure containing the address to be bound to the socket. The
+	length and format of the address depend on the address family of the socket.
+	address_len: Specifies the length of the sockaddr structure pointed to by the address argument .
+	The bind() returns -1 upon any error in binding the server address with the socket.*/
+	if (bind(sock, (struct sockaddr *) &svr_addr, sizeof(svr_addr)) == -1) {
+		close(sock);
+		err(1, "Can't bind");
+	}
