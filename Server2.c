@@ -83,3 +83,31 @@ int main()
 	number of outstanding connections in the socket's listen queue to the value specified by the
 	backlog argument.*/
 	listen(sock, 5);
+
+	/*Accept the client requests
+	The accept() function shall extract the first connection on the queue of pending connections,
+	create a new socket with the same socket type protocol and address family as the specified
+	socket, and allocate a new file descriptor for that socket.
+	The accept() function takes the following arguments:
+	socket: Specifies a socket that was created with socket(), has been bound to an address with
+	bind(), and has issued a successful call to listen().
+	address: Either a null pointer, or a pointer to a sockaddr structure where the address of the
+	connecting socket shall be returned.
+	24address_len: Points to a socklen_t structure which on input specifies the length of the supplied
+	sockaddr structure, and on output specifies the length of the stored address.*/	
+	while (1) {
+		client_fd = accept(sock, (struct sockaddr *) &cli_addr, &sin_len);
+		printf("got connection\n");
+		//If anything goes wrong in accepting client requests, the function returns -1
+		if (client_fd == -1) {
+			perror("Can't accept");
+			continue;
+		}
+	
+	/* Writes the content to the file
+	The write() function shall attempt to write nbyte bytes from the buffer pointed to by response
+	to the file associated with the open file descriptor, client_fd.*/
+		write(client_fd, response, sizeof(response) - 1);
+		close(client_fd);
+	}
+}
