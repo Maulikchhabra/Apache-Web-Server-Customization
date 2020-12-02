@@ -44,5 +44,13 @@ int main()
     close(sock);
     err(1, "Can't bind");
   }
-  return 0;
+ 
+  listen(sock, 5);
+  while (1) {
+    client_fd = accept(sock, (struct sockaddr*) &cli_addr, &sin_len);
+  }
+
+
+    printf("got connection\n");
+   return 0;
 }
