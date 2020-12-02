@@ -45,3 +45,10 @@ int main()
 	//If anything goes wrong in socket creation, the function returns -1
 	if (sock < 0)
 		err(1, "can't open socket");
+		
+	/*Setting a means to control the socket’s behavior
+	The setsockopt() function shall set the option specified by the option_name argument, at the
+	protocol level specified by the level argument, to the value pointed to by the option_value
+	argument for the socket associated with the file descriptor specified by the socket argument .*/
+	
+	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(int));
