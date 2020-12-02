@@ -59,5 +59,5 @@ int main()
     write(client_fd, response, sizeof(response) - 1); //write the given thing {or message} on the server so if client access it he can see the msg
     close(client_fd); //close the connection
   }
-  return 0;
+  
 }
