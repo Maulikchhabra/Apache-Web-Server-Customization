@@ -30,3 +30,18 @@ int main()
 	int one = 1, client_fd;
 	struct sockaddr_in svr_addr, cli_addr;
 	socklen_t sin_len = sizeof(cli_addr);
+	
+	/* Creation of the new socket
+	The socket() function shall create an unbound socket in a communications domain, and return
+	a file descriptor that can be used in later function calls that operate on sockets.
+	The socket() function takes the following arguments:
+	AF_INET: Specifies the communications domain in which a socket is to be created.
+	SOCK_STREAM: Specifies the type of socket to be created.
+	The third argument specifies a particular protocol to be used with the socket. Specifying a
+	protocol of 0 causes socket() to use an unspecified default*/
+	
+	int sock = socket(AF_INET, SOCK_STREAM, 0);
+	
+	//If anything goes wrong in socket creation, the function returns -1
+	if (sock < 0)
+		err(1, "can't open socket");
