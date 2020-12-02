@@ -76,3 +76,10 @@ int main()
 		close(sock);
 		err(1, "Can't bind");
 	}
+	
+	/* Listening client requests
+	The listen() function marks a connection-mode socket (for example, those of type
+	SOCK_STREAM), specified by the socket argument s, as accepting connections, and limits the
+	number of outstanding connections in the socket's listen queue to the value specified by the
+	backlog argument.*/
+	listen(sock, 5);
