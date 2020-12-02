@@ -39,5 +39,10 @@ int main()
   svr_addr.sin_family = AF_INET; //to use IP address or we can say you will be having all values in IP address  
   svr_addr.sin_addr.s_addr = INADDR_ANY; //you get your address by your own (this pc address only)
   svr_addr.sin_port = htons(port); //htons() method convert port number from int to network format
+ 
+  if (bind(sock,(struct sockaddr *) &svr_addr, sizeof(svr_addr)) == -1) {
+    close(sock);
+    err(1, "Can't bind");
+  }
   return 0;
 }
