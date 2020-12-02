@@ -21,3 +21,11 @@ char response[] = "HTTP/1.1 200 OK\r\n"
 " text-shadow: 0 0 2mm red}</style></head>"
 "<body><h1>Hello world!</h1></body></html>\r\n";
  
+int main()
+{
+  int one = 1, client_fd;
+  struct sockaddr_in svr_addr, cli_addr;
+  socklen_t sin_len = sizeof(cli_addr);
+ 
+  return 0;
+}
